@@ -10,15 +10,33 @@ int main()
 
     // User input for Start temp
     std::cout << "Enter the temperature value: ";
-    std::cin >> input;
+
+    // Check For valid input
+    if (!(std::cin >> input)) {
+        std::cout << "Invalid temperature input.\n";
+        return 1;
+    }
 
     // User input for what scale the Start temp is
     std::cout << "Choose the input scale: 1 for Celsius, 2 for Fahrenheit, 3 for Kelvin: ";
     std::cin >> scale;
 
+    // Check if scale is valid
+    if (scale == 3 && input < 0) {
+        std::cout << "Invalid input: Temperature in Kelvin cannot be negative.\n";
+        return 1;
+    }
+
     // User Input for what scale to convert Start temp to
     std::cout << "Choose the target scale: 1 for Celsius, 2 for Fahrenheit, 3 for Kelvin: ";
     std::cin >> target;
+
+
+    // Check for valid target
+    if (scale == target) {
+        std::cout << "Invalid conversion: Input and target scales are the same.\n";
+        return 1;
+    }
     
     // Convert to Celsius first
     switch (scale) {
